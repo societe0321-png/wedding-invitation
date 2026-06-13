@@ -58,7 +58,7 @@ const NaverMap = () => {
           WEDDING_HALL_POSITION[1],
           WEDDING_HALL_POSITION[0],
         ),
-        zoom: 17,
+        zoom: 16,
       })
 
       // 마커 추가
@@ -156,7 +156,7 @@ const NaverMap = () => {
         </button>
 
         {/* 카카오 내비 연동 */}
-        <button
+        {/* <button
           onClick={() => {
             switch (checkDevice()) {
               case "ios":
@@ -179,11 +179,11 @@ const NaverMap = () => {
           }}
         >
           <img src={knaviIcon} alt="kakao-navi-icon" />
-          카카오 내비
-        </button>
+          카카오 네비
+        </button> */}
 
         {/* 티맵 연동 */}
-        <button
+        {/* <button
           onClick={() => {
             switch (checkDevice()) {
               case "ios":
@@ -205,7 +205,7 @@ const NaverMap = () => {
         >
           <img src={tmapIcon} alt="t-map-icon" />
           티맵
-        </button>
+        </button> */}
       </div>
     </>
   )

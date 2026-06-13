@@ -37,7 +37,7 @@ export const LOCATION = "아펠가모 광화문"
 /**
  * 예식 장소 상세 주소
  */
-export const LOCATION_ADDRESS = "서울특별시 종로구 종로1길 50 더케이트윈타워 A동 LL층"
+export const LOCATION_ADDRESS = "서울특별시 종로구 종로1길 50 \n더케이트윈타워 A동 LL층"
 
 /**
  * 카카오톡 공유 시 사용할 위치 정보 주소
