@@ -74,14 +74,16 @@ const NaverMap = () => {
       const infowindow = new naver.maps.InfoWindow({
         content: `
           <div style="
-            padding: 5px 10px; 
-            font-size: 13px; 
+            padding: 0.3rem 0.6rem; 
+            font-size: 0.75rem; 
             font-weight: bold; 
             color: #352012; 
             background: #cfcac7; 
             border: 1px solid #352012; 
             border-radius: 3px;
             text-align: center;
+            white-space: nowrap;
+            word-break: keep-all;
           ">
             아펠가모 광화문
           </div>
