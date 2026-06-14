@@ -74,8 +74,8 @@ const NaverMap = () => {
       const infowindow = new naver.maps.InfoWindow({
         content: `
           <div style="
-            padding: 0.25rem 0.55rem; 
-            font-size: 0.7rem; 
+            padding: 0.3rem 0.55rem; 
+            font-size: 0.75rem; 
             font-weight: bold; 
             color: #352012; 
             background: #dcd8d6; 
