@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react"
 import patelUrl from "../../icons/snowflake.png"
 
-// 꽃잎의 이동 및 회전 속도 설정
-const X_SPEED = 0.3
-const X_SPEED_VARIANCE = 0.8
+// ❄️ 눈송이가 자연스럽게 수직으로 떨어지도록 속도 조정
+const X_SPEED = 0.1
+const X_SPEED_VARIANCE = 0.4
 
 const Y_SPEED = 0.4
 const Y_SPEED_VARIANCE = 0.4
@@ -11,7 +11,7 @@ const Y_SPEED_VARIANCE = 0.4
 const FLIP_SPEED_VARIANCE = 0.002
 
 /**
- * 개별 꽃잎 객체를 관리하는 클래스입니다.
+ * 개별 눈송이 객체를 관리하는 클래스입니다.
  */
 class Petal {
   x: number
@@ -37,12 +37,14 @@ class Petal {
   }
 
   /**
-   * 꽃잎의 크기, 투명도, 속도 등을 무작위로 초기화합니다.
+   * ❄️ 눈송이의 크기, 투명도, 속도 등을 무작위로 초기화합니다.
    */
   initialize() {
-    this.w = 40 + Math.random() * 15
-    this.h = 35 + Math.random() * 10
-    this.opacity = this.w / 80
+    // 가로·세로를 하나의 크기(size)로 통일하여 완벽한 정사각형 비율 유지
+    const size = 15 + Math.random() * 20 // 눈송이 크기 다양화 (최소 15px ~ 최대 35px)
+    this.w = size
+    this.h = size
+    this.opacity = this.w / 50 // 크기가 클수록 조금 더 선명하게 연출
     this.flip = Math.random()
 
     this.xSpeed = X_SPEED + Math.random() * X_SPEED_VARIANCE
@@ -51,7 +53,7 @@ class Petal {
   }
 
   /**
-   * 화면에 꽃잎을 그립니다.
+   * 화면에 눈송이를 그립니다.
    */
   draw() {
     // 화면 밖으로 나갔을 경우 초기화 및 재배치
@@ -68,17 +70,19 @@ class Petal {
       }
     }
     this.ctx.globalAlpha = this.opacity
+    
+    // 💡 [수정 완료] 이미지 비율이 깨지지 않게 원본(this.w, this.h) 그대로 그리도록 수식을 걷어냈습니다.
     this.ctx.drawImage(
       this.petalImg,
       this.x,
       this.y,
-      this.w * (0.6 + Math.abs(Math.cos(this.flip)) / 3),
-      this.h * (0.8 + Math.abs(Math.sin(this.flip)) / 5),
+      this.w,
+      this.h,
     )
   }
 
   /**
-   * 꽃잎의 위치를 업데이트하고 다시 그립니다.
+   * 눈송이의 위치를 업데이트하고 다시 그립니다.
    */
   animate() {
     this.x += this.xSpeed
@@ -89,7 +93,7 @@ class Petal {
 }
 
 /**
- * 배경에 꽃잎이 내리는 애니메이션 효과를 주는 컴포넌트입니다.
+ * 배경에 눈송이가 내리는 애니메이션 효과를 주는 컴포넌트입니다.
  *
  * @returns {JSX.Element} 배경 효과 컴포넌트
  */
@@ -109,14 +113,14 @@ export const BGEffect = () => {
     petalImg.src = patelUrl
 
     /**
-     * 화면 크기에 따른 적절한 꽃잎 개수를 계산합니다.
+     * 화면 크기에 따른 적절한 눈송이 개수를 계산합니다.
      */
     const getPetalNum = () => {
       return Math.floor((window.innerWidth * window.innerHeight) / 30000)
     }
 
     /**
-     * 꽃잎들을 생성하고 초기화합니다.
+     * 눈송이들을 생성하고 초기화합니다.
      */
     const initializePetals = () => {
       const count = getPetalNum()
@@ -130,7 +134,7 @@ export const BGEffect = () => {
     initializePetals()
 
     /**
-     * 매 프레임마다 꽃잎을 렌더링합니다.
+     * 매 프레임마다 눈송이를 렌더링합니다.
      */
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -141,7 +145,7 @@ export const BGEffect = () => {
     render()
 
     /**
-     * 화면 크기 변경 시 캔버스 크기를 조정하고 꽃잎 개수를 조절합니다.
+     * 화면 크기 변경 시 캔버스 크기를 조정하고 눈송이 개수를 조절합니다.
      */
     const onResize = () => {
       clearTimeout(resizeTimeoutRef.current)
