@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react"
-import patelUrl from "../../icons/petal.png"
+import patelUrl from "../../icons/snowflake.png"
 
 // 꽃잎의 이동 및 회전 속도 설정
-const X_SPEED = 0.6
+const X_SPEED = 0.5
 const X_SPEED_VARIANCE = 0.8
 
 const Y_SPEED = 0.4
